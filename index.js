@@ -1,57 +1,75 @@
 // TIENDA PARA DIETETICA 
-// Buscador de producto
-// Precio
+//DASHBOARD ADMIN PARA INGRESAR PRODUCTOS
+//LISTA DE PRODUCTOS (CON TODAS SUS CARACTERISTICAS)
+//BUSCADOR DE PRODUCTOS
+//CARRITO DE COMPRA Y PEDIDO (SE ENVIA A WHATSAPP)
 
 alert('Bienvenido a Los Sauces Dietetica')
 
-alert('Los siguiente productos estan disponibles para consultar precio: avena, arroz, almendras, tofu, burganas, ninas, hummus, tatrenfu')
+// PRODUCTOS DISPONIBLES
+// const productosDisponibles = [];
 
-// const productoSeleccionado = prompt('Ingrese el producto que desea comprar')
-// if (productoSeleccionado === 'Avena') {
-//     console.log('El precio de la Avena es de $880 x Kg')
-// }   else if (productoSeleccionado === 'Arroz') {  
-//     console.log('El precio del Arroz es de $500 x Kg')
-// }   else if (productoSeleccionado === 'Almendras') {
-//     console.log('El precio de las Almendras es de $710 x 100gr')
-// }   else if (productoSeleccionado === 'Tofu') {
-//     console.log('El precio del Tofu es de $990 x Unidad')
-// }   else if (productoSeleccionado === 'Burganas') {
-//     console.log('El precio de las Burganas es de $990 x Unidad')
-// }   else if (productoSeleccionado === 'Ninas') {
-//     console.log('El precio de las Nunas es de $1080 x Unidad')
-// }   else if (productoSeleccionado === 'Hummus') {
-//     console.log('El precio del Hummus es de $750 x Unidad')
-// }   else if (productoSeleccionado === 'Tatrenfu') {
-//     console.log('El precio del Tatrenfu es de $1030 x Unidad')
-// }   else {
-//     console.log('El producto ingresado se encuentra sin Stock momentaneamente')
-// }
+//     avena : 880;
+//     arroz : 500;
+//     almendras : 710;
+//     tofu : 990;
+//     burganas : 990;
+//     ninas : 1080;
+//     hummus : 750;
+//     tatrenfu : 1030;
 
-// EL CODIGO COMENTADO ES EL PRIMER INTENTO, EL SIGUIENTE INTENTO ES MAS PROLIJO E UTIL
 
-const productosDisponibles = {
-    avena : 880,
-    arroz : 500,
-    almendras : 710,
-    tofu : 990,
-    burganas : 990,
-    ninas : 1080,
-    hummus : 750,
-    tatrenfu : 1030
-}
-
-function precio(nombreProducto) {
-    if (nombreProducto in productosDisponibles) {
-        console.log(`${nombreProducto} = $${productosDisponibles[nombreProducto]}`);
-    } else {
-        console.log('Producto momentaneamente sin Stock');
+// CONSTRUCTOR DE PRODUCTO
+class Producto {
+    constructor (codigo, nombre, cantidad, precio) {
+        this.codigo = codigo;
+        this.nombre = nombre;
+        this.cantidad = cantidad;
+        this.precio = precio;
     }
 }
 
-while(true) {
-    const productoBuscado = prompt('Ingrese el producto a consultar, o ingrese "salir" para terminar el programa');
-    if (productoBuscado === 'salir') {
+// FUNCION PARA CREAR PRODUCTOS
+
+function crearProducto () {
+    const codigo = parseInt (prompt ('Ingrese el codigo del Producto nuevo:'));
+    const nombre = prompt ('Ingrese el nombre del Producto nuevo:');
+    const cantidad = parseInt (prompt ('Ingrese la cantidad de Kilos o Unidades (en numero):'));
+    const precio = parseFloat (prompt ('Ingrese el precio del Producto nuevo:'));
+
+    const productoNuevo = new Producto(codigo, nombre, cantidad, precio);
+    return productoNuevo;
+
+}
+
+const listaProductos = [];
+
+let agregarProducto = true;
+
+while (agregarProducto) {
+    const productoNuevo = crearProducto ();
+    listaProductos.push (productoNuevo);
+
+    const seguirCreando = prompt ('Agregar otro producto?');
+    agregarProducto = seguirCreando == 'si';
+}
+
+console.log ('Lista de productos:');
+console.log (listaProductos);
+
+// PROMPT PARA BUSCAR PRODUCTOS
+
+const buscarProducto = prompt('Ingrese el nombre del producto que desea buscar:');
+let encontrado = false;
+
+for (const producto of listaProductos) {
+    if (producto.nombre === buscarProducto) {
+        console.log (`El precio del producto "${producto.nombre}" es $${producto.precio}`);
+        encontrado = true;
         break;
     }
-    precio(productoBuscado)
+}
+
+if (!encontrado) {
+    console.log(`No hay stock del producto consultado`);
 }
