@@ -59,17 +59,27 @@ console.log (listaProductos);
 
 // PROMPT PARA BUSCAR PRODUCTOS
 
+// const buscarProducto = prompt('Ingrese el nombre del producto que desea buscar:');
+// let encontrado = false;
+
+// for (const producto of listaProductos) {
+//     if (producto.nombre === buscarProducto) {
+//         console.log (`El precio del producto "${producto.nombre}" es $${producto.precio}`);
+//         encontrado = true;
+//         break;
+//     }
+// }
+
+// if (!encontrado) {
+//     console.log(`No hay stock del producto consultado`);
+// }
+
+
 const buscarProducto = prompt('Ingrese el nombre del producto que desea buscar:');
-let encontrado = false;
+const productoEncontrado = listaProductos.find(producto => producto.nombre === buscarProducto);
 
-for (const producto of listaProductos) {
-    if (producto.nombre === buscarProducto) {
-        console.log (`El precio del producto "${producto.nombre}" es $${producto.precio}`);
-        encontrado = true;
-        break;
-    }
-}
-
-if (!encontrado) {
+if (productoEncontrado) {
+    console.log(`El precio del producto "${productoEncontrado.nombre}" es $${productoEncontrado.precio}`);
+} else {
     console.log(`No hay stock del producto consultado`);
 }
