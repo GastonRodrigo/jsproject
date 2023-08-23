@@ -34,32 +34,32 @@ const productosPredeterminados = [
 
 const listaProductos = [...productosPredeterminados];
 
-let agregarProducto = true;
+// let agregarProducto = true;
 
-while (agregarProducto) {
-    const productoNuevo = crearProducto();
-    listaProductos.push(productoNuevo);
+// while (agregarProducto) {
+//     const productoNuevo = crearProducto();
+//     listaProductos.push(productoNuevo);
 
-    const seguirCreando = prompt('Agregar otro producto?');
-    agregarProducto = seguirCreando === 'si';
-}
+//     const seguirCreando = prompt('Agregar otro producto?');
+//     agregarProducto = seguirCreando === 'si';
+// }
 
-console.log('Lista de productos:');
-console.log(listaProductos);
+// console.log('Lista de productos:');
+// console.log(listaProductos);
 
 // BOTON AGREGAR NUEVO PRODUCTO
-const crearProductoBtn = document.getElementById('crear-producto-btn');
+// const crearProductoBtn = document.getElementById('crear-producto-btn');
 
-crearProductoBtn.addEventListener('click', () => {
-    const productoNuevo = crearProducto();
-    listaProductosGuardados.push(productoNuevo);
+// crearProductoBtn.addEventListener('click', () => {
+//     const productoNuevo = crearProducto();
+//     listaProductosGuardados.push(productoNuevo);
 
-    const listaProductosGuardadosJSON = JSON.stringify(listaProductosGuardados);
-    localStorage.setItem('productos', listaProductosGuardadosJSON);
+//     const listaProductosGuardadosJSON = JSON.stringify(listaProductosGuardados);
+//     localStorage.setItem('productos', listaProductosGuardadosJSON);
 
     
-    mostrarProductosEnDOM();
-});
+//     mostrarProductosEnDOM();
+// });
 
 // GUARDAR EN STORAGE
 const listaProductosJSON = JSON.stringify(listaProductos);
@@ -72,6 +72,7 @@ const listaProductosGuardados = JSON.parse(listaProductosGuardadosJSON) || [];
 // MODIFICAR EL DOM Y DETECTAR EVENTOS DE USUARIO
 const carritoLista = document.getElementById('carrito-lista');
 const productosContainer = document.getElementById('productos-container');
+const crearProductoBtn = document.getElementById('crear-producto-btn');
 
 function mostrarProductosEnDOM() {
     productosContainer.innerHTML = '';
@@ -90,6 +91,16 @@ function mostrarProductosEnDOM() {
 }
 
 mostrarProductosEnDOM();
+
+crearProductoBtn.addEventListener('click', () => {
+    const productoNuevo = crearProducto(); 
+    listaProductosGuardados.push(productoNuevo);
+
+    const listaProductosGuardadosJSON = JSON.stringify(listaProductosGuardados);
+    localStorage.setItem('productos', listaProductosGuardadosJSON);
+
+    mostrarProductosEnDOM();
+});
 
 document.addEventListener('click', event => {
     if (event.target.classList.contains('agregar-carrito')) {
