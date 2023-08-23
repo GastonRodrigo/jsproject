@@ -6,18 +6,6 @@
 
 alert('Bienvenido a Los Sauces Dietetica')
 
-// PRODUCTOS DISPONIBLES
-// const productosDisponibles = [];
-
-//     avena : 880;
-//     arroz : 500;
-//     almendras : 710;
-//     tofu : 990;
-//     burganas : 990;
-//     ninas : 1080;
-//     hummus : 750;
-//     tatrenfu : 1030;
-
 
 // CONSTRUCTOR DE PRODUCTO
 class Producto {
@@ -58,22 +46,6 @@ console.log ('Lista de productos:');
 console.log (listaProductos);
 
 // PROMPT PARA BUSCAR PRODUCTOS
-
-// const buscarProducto = prompt('Ingrese el nombre del producto que desea buscar:');
-// let encontrado = false;
-
-// for (const producto of listaProductos) {
-//     if (producto.nombre === buscarProducto) {
-//         console.log (`El precio del producto "${producto.nombre}" es $${producto.precio}`);
-//         encontrado = true;
-//         break;
-//     }
-// }
-
-// if (!encontrado) {
-//     console.log(`No hay stock del producto consultado`);
-// }
-
 
 const buscarProducto = prompt('Ingrese el nombre del producto que desea buscar:');
 const productoEncontrado = listaProductos.find(producto => producto.nombre === buscarProducto);
