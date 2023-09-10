@@ -29,7 +29,12 @@ const productosPredeterminados = [
     new Producto(1, 'Hummus Felices las vacas', 10, 1500),
     new Producto(2, 'Karnevil Felices las vacas', 15, 2450),
     new Producto(3, 'VDRINK Almendras', 8, 1270),
-    new Producto(4, 'Alfajor de Almendras', 12, 875)
+    new Producto(4, 'Alfajor de Almendras', 12, 875),
+    new Producto(5, 'Miel de pastizal 1Kg', 102, 1875),
+    new Producto(6, 'Rawmesan', 10, 1300),
+    new Producto(7, 'Queso Crema Rebelde', 25, 900),
+    new Producto(8, 'NOT Burger Carne', 100, 2275),
+    new Producto(9, 'Congelados Frutos del bosque', 14, 1675)
 ];
 
 const listaProductos = [...productosPredeterminados];
@@ -47,23 +52,26 @@ const carritoLista = document.getElementById('carrito-lista');
 const productosContainer = document.getElementById('productos-container');
 const crearProductoBtn = document.getElementById('crear-producto-btn');
 
+// PRODUCTOS MOSTRADOS POR HTML EN CARDS
 function mostrarProductosEnDOM() {
     productosContainer.innerHTML = '';
-
+  
     listaProductosGuardados.forEach(producto => {
-        const productoDiv = document.createElement('div');
-        productoDiv.innerHTML = `
-            <div class="producto-info">
-                <p><strong>Nombre:</strong> ${producto.nombre}</p>
-                <p><strong>Precio:</strong> $${producto.precio.toFixed(2)}</p>
-                <button class="agregar-carrito" data-codigo="${producto.codigo}">Agregar al carrito</button>
-            </div>
-        `;
-        productosContainer.appendChild(productoDiv);
+      const productoCard = document.createElement('div');
+      productoCard.classList.add('producto-card');
+      productoCard.innerHTML = `
+          <div class="producto-info">
+              <p><strong>Nombre:</strong> ${producto.nombre}</p>
+              <p><strong>Precio:</strong> $${producto.precio.toFixed(2)}</p>
+              <button class="agregar-carrito" data-codigo="${producto.codigo}">Agregar al carrito</button>
+          </div>
+      `;
+      productosContainer.appendChild(productoCard);
     });
-}
-
-mostrarProductosEnDOM();
+  }
+  
+  mostrarProductosEnDOM();
+  
 
 crearProductoBtn.addEventListener('click', () => {
     const productoNuevo = crearProducto(); 

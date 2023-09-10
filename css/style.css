@@ -96,6 +96,10 @@ button.agregar-carrito, #crear-producto-btn {
     padding: 5px 10px;
     cursor: pointer;
 }
+#crear-producto-btn:hover {
+        background-color: #e35500;
+    }
+
 @media (max-width: 700px) {
     header {
       flex-direction: column;
@@ -133,6 +137,16 @@ button.agregar-carrito, #crear-producto-btn {
       width: 100%;
       max-width: 300px;
     }
+    .productos-container {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .producto-card {
+        flex: 0 0 calc(100% - 20px);
+        margin: 10px 0; 
+    }
+    
   }
   
   .menu-items li a {
@@ -170,6 +184,7 @@ button.agregar-carrito, #crear-producto-btn {
     }
   }
 
+
   body a {
     color: #9a4a0d;
     border-radius: 5px;
@@ -186,3 +201,46 @@ button.agregar-carrito, #crear-producto-btn {
     border-radius: 10px;
     padding: 10px;
   }
+
+
+/* TEST CARDS */
+
+.productos-container {
+    display: flex;
+    flex-wrap: wrap;
+  }
+  
+  .producto-card {
+    border: 1px solid #ddd;
+    align-items: center;
+    border-radius: 5px;
+    padding: 10px;
+    margin: 5px;
+    width: 30%; 
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s ease-in-out; 
+    flex: 0 0 calc(30% - 20px); 
+  }
+  
+  .producto-card:hover {
+    transform: translateY(-5px); 
+  }
+  
+  .producto-info p {
+    margin: 0;
+    padding: 0;
+  }
+  
+  .agregar-carrito {
+    background-color: #ff6600;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .agregar-carrito:hover {
+    background-color: #e35500;
+  }
+
