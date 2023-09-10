@@ -34,33 +34,6 @@ const productosPredeterminados = [
 
 const listaProductos = [...productosPredeterminados];
 
-// let agregarProducto = true;
-
-// while (agregarProducto) {
-//     const productoNuevo = crearProducto();
-//     listaProductos.push(productoNuevo);
-
-//     const seguirCreando = prompt('Agregar otro producto?');
-//     agregarProducto = seguirCreando === 'si';
-// }
-
-// console.log('Lista de productos:');
-// console.log(listaProductos);
-
-// BOTON AGREGAR NUEVO PRODUCTO
-// const crearProductoBtn = document.getElementById('crear-producto-btn');
-
-// crearProductoBtn.addEventListener('click', () => {
-//     const productoNuevo = crearProducto();
-//     listaProductosGuardados.push(productoNuevo);
-
-//     const listaProductosGuardadosJSON = JSON.stringify(listaProductosGuardados);
-//     localStorage.setItem('productos', listaProductosGuardadosJSON);
-
-    
-//     mostrarProductosEnDOM();
-// });
-
 // GUARDAR EN STORAGE
 const listaProductosJSON = JSON.stringify(listaProductos);
 localStorage.setItem('productos', listaProductosJSON);
@@ -100,7 +73,17 @@ crearProductoBtn.addEventListener('click', () => {
     localStorage.setItem('productos', listaProductosGuardadosJSON);
 
     mostrarProductosEnDOM();
+
+
+// NOTIFICACION PARA CREAR PRODUCTO CON TOASTIFY
+Toastify({
+    text: "Producto creado con éxito!",
+    duration: 3000, 
+    gravity: "top",
+    close: true,
+}).showToast();
 });
+
 
 document.addEventListener('click', event => {
     if (event.target.classList.contains('agregar-carrito')) {
@@ -109,6 +92,15 @@ document.addEventListener('click', event => {
 
         if (productoSeleccionado) {
             carritoLista.innerHTML += `<li>${productoSeleccionado.nombre} - $${productoSeleccionado.precio.toFixed(2)}</li>`;
+
+            // NOTIFICACION TOASTIFY PARA PRODUCTO AGREGADO AL CARRITO
+            Toastify({
+                text: "Producto agregado al carrito!",
+                duration: 3000,
+                gravity: "top",
+                close: true,
+            }).showToast();
         }
     }
 });
+

@@ -1,16 +1,39 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <link rel="icon" type="image/png" href="./img/favicon.png">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    
     <title>Los Sauces Dietetica</title>
 </head>
 
+<header>
+<div class="logomenu" data-aos="fade-right">
+    <img src="./img/lossaucessinfondo.png" alt="logo los sauces">
+</div>
+<form class="buscador-header" action="#" method="GET">
+    <input type="text" id="busqueda" name="q">
+    <button type="submit">Buscar productos</button>
+</form>
+<nav class="menu">
+    
+    <ul class="menu-items">
+        
+        <li><a href="./index.html">Inicio</a></li>
+        <li><a href="#">Destacados</a></li>
+        <li><a href="#">Productos</a></li>
+        <li><a href="#">Nosotros</a></li>
+        <li><a href="#">Contacto</a></li>
+        
+    </ul>
+</nav>
+</header>
 <body>
-    <div>
-        <h1>Bienvenido a Los Sauces Dietetica</h1>
-    </div>
+    
     <div id="productos-container" class="container">
     </div>
     <div id="productos-container" class="container">
@@ -24,5 +47,17 @@
     </div>
 
     <script src="index.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+
+
+    <footer id="end">
+        <section class="sociales">
+            <a href="#" target="_blank">© All Rights Reserved.</a>
+            <a href="https://facebook.com/lossauces.si" class="fa fa-facebook"></a>
+            <a href="https://instagram.com/lossauces.si" class="fa fa-instagram"></a>
+            <a href="https://wa.link/8w7e5g" class="fa fa-whatsapp"></a>
+        </section>
+        
+    </footer>
 </body>
 </html>
