@@ -48,15 +48,15 @@ function crearProducto() {
 }
 
 const productosPredeterminados = [
-    new Producto(1, 'Hummus Felices las vacas', 10, 1500, './img/favicon.png'),
-    new Producto(2, 'Karnevil Felices las vacas', 15, 2450, './img/favicon.png' ),
-    new Producto(3, 'VDRINK Almendras', 8, 1270, './img/favicon.png'),
-    new Producto(4, 'Alfajor de Almendras', 12, 875, './img/favicon.png'),
-    new Producto(5, 'Miel de pastizal 1Kg', 102, 1875, './img/favicon.png'),
-    new Producto(6, 'Rawmesan', 10, 1300, './img/favicon.png'),
-    new Producto(7, 'Queso Crema Rebelde', 25, 900, './img/favicon.png'),
-    new Producto(8, 'NOT Burger Carne', 100, 2275, './img/favicon.png'),
-    new Producto(9, 'Congelados Frutos del bosque', 14, 1675, './img/favicon.png')
+    new Producto(101, 'Hummus Felices las vacas', 10, 1500, './img/favicon.png'),
+    new Producto(201, 'Karnevil Felices las vacas', 15, 2450, './img/favicon.png' ),
+    new Producto(301, 'VDRINK Almendras', 8, 1270, './img/favicon.png'),
+    new Producto(401, 'Alfajor de Almendras', 12, 875, './img/favicon.png'),
+    new Producto(501, 'Miel de pastizal 1Kg', 102, 1875, './img/favicon.png'),
+    new Producto(601, 'Rawmesan', 10, 1300, './img/favicon.png'),
+    new Producto(701, 'Queso Crema Rebelde', 25, 900, './img/favicon.png'),
+    new Producto(801, 'NOT Burger Carne', 100, 2275, './img/favicon.png'),
+    new Producto(901, 'Congelados Frutos del bosque', 14, 1675, './img/favicon.png')
 ];
 
 const listaProductos = [...productosPredeterminados];
