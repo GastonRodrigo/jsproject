@@ -4,13 +4,34 @@
 //BUSCADOR DE PRODUCTOS
 //CARRITO DE COMPRA Y PEDIDO (SE ENVIA A WHATSAPP)
 
+// CARGA DE API
+function cargarProductosDeAPI() {
+    const url = 'https://fakestoreapi.com/products';
+
+    return fetch(url)
+        .then(response => response.json())
+        .then(data => {
+            const productosAPI = data.map(item => new Producto(item.id, item.title, 1, item.price, item.image));
+            listaProductosGuardados.push(...productosAPI); 
+            const listaProductosGuardadosJSON = JSON.stringify(listaProductosGuardados);
+            localStorage.setItem('productos', listaProductosGuardadosJSON);
+
+            mostrarProductosEnDOM(); 
+        })
+        .catch(error => {
+            console.error('Error al cargar productos de la API:', error);
+            return [];
+        });
+}
+
 // CONSTRUCTOR DE PRODUCTO
 class Producto {
-    constructor(codigo, nombre, cantidad, precio) {
+    constructor(codigo, nombre, cantidad, precio, imagen) {
         this.codigo = codigo;
         this.nombre = nombre;
         this.cantidad = cantidad;
         this.precio = precio;
+        this.imagen = imagen;
     }
 }
 
@@ -20,21 +41,22 @@ function crearProducto() {
     const nombre = prompt('Ingrese el nombre del Producto nuevo:');
     const cantidad = parseInt(prompt('Ingrese la cantidad de Kilos o Unidades (en numero):'));
     const precio = parseFloat(prompt('Ingrese el precio del Producto nuevo:'));
+    const imagen = prompt('Ingrese la URL de la imagen del Producto:');
 
-    const productoNuevo = new Producto(codigo, nombre, cantidad, precio);
+    const productoNuevo = new Producto(codigo, nombre, cantidad, precio, imagen);
     return productoNuevo;
 }
 
 const productosPredeterminados = [
-    new Producto(1, 'Hummus Felices las vacas', 10, 1500),
-    new Producto(2, 'Karnevil Felices las vacas', 15, 2450),
-    new Producto(3, 'VDRINK Almendras', 8, 1270),
-    new Producto(4, 'Alfajor de Almendras', 12, 875),
-    new Producto(5, 'Miel de pastizal 1Kg', 102, 1875),
-    new Producto(6, 'Rawmesan', 10, 1300),
-    new Producto(7, 'Queso Crema Rebelde', 25, 900),
-    new Producto(8, 'NOT Burger Carne', 100, 2275),
-    new Producto(9, 'Congelados Frutos del bosque', 14, 1675)
+    new Producto(1, 'Hummus Felices las vacas', 10, 1500, './img/favicon.png'),
+    new Producto(2, 'Karnevil Felices las vacas', 15, 2450, './img/favicon.png' ),
+    new Producto(3, 'VDRINK Almendras', 8, 1270, './img/favicon.png'),
+    new Producto(4, 'Alfajor de Almendras', 12, 875, './img/favicon.png'),
+    new Producto(5, 'Miel de pastizal 1Kg', 102, 1875, './img/favicon.png'),
+    new Producto(6, 'Rawmesan', 10, 1300, './img/favicon.png'),
+    new Producto(7, 'Queso Crema Rebelde', 25, 900, './img/favicon.png'),
+    new Producto(8, 'NOT Burger Carne', 100, 2275, './img/favicon.png'),
+    new Producto(9, 'Congelados Frutos del bosque', 14, 1675, './img/favicon.png')
 ];
 
 const listaProductos = [...productosPredeterminados];
@@ -47,31 +69,35 @@ localStorage.setItem('productos', listaProductosJSON);
 const listaProductosGuardadosJSON = localStorage.getItem('productos');
 const listaProductosGuardados = JSON.parse(listaProductosGuardadosJSON) || [];
 
+// CARGAR DESDE API
+cargarProductosDeAPI();
+
 // MODIFICAR EL DOM Y DETECTAR EVENTOS DE USUARIO
 const carritoLista = document.getElementById('carrito-lista');
 const productosContainer = document.getElementById('productos-container');
 const crearProductoBtn = document.getElementById('crear-producto-btn');
 
 // PRODUCTOS MOSTRADOS POR HTML EN CARDS
-function mostrarProductosEnDOM() {
-    productosContainer.innerHTML = '';
-  
-    listaProductosGuardados.forEach(producto => {
-      const productoCard = document.createElement('div');
-      productoCard.classList.add('producto-card');
-      productoCard.innerHTML = `
-          <div class="producto-info">
-              <p><strong>Nombre:</strong> ${producto.nombre}</p>
-              <p><strong>Precio:</strong> $${producto.precio.toFixed(2)}</p>
-              <button class="agregar-carrito" data-codigo="${producto.codigo}">Agregar al carrito</button>
-          </div>
-      `;
-      productosContainer.appendChild(productoCard);
-    });
-  }
-  
-  mostrarProductosEnDOM();
-  
+    function mostrarProductosEnDOM() {
+        productosContainer.innerHTML = '';
+    
+        listaProductosGuardados.forEach(producto => {
+        const productoCard = document.createElement('div');
+        productoCard.classList.add('producto-card');
+        productoCard.innerHTML = `
+            <div class="producto-info">
+            <img src="${producto.imagen}"  class="responsive-img ">
+                <p><strong>Nombre:</strong> ${producto.nombre}</p>
+                <p><strong>Precio:</strong> $${producto.precio.toFixed(2)}</p>
+                <button class="agregar-carrito" data-codigo="${producto.codigo}">Agregar al carrito</button>
+            </div>
+        `;
+        productosContainer.appendChild(productoCard);
+        });
+    }
+    
+    mostrarProductosEnDOM();
+    
 
 crearProductoBtn.addEventListener('click', () => {
     const productoNuevo = crearProducto(); 
@@ -111,4 +137,3 @@ document.addEventListener('click', event => {
         }
     }
 });
-
