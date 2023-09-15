@@ -1,2 +1,3 @@
 # jsproject
-practice to add js to the main project
+
+site build online https://lossauces.netlify.app/

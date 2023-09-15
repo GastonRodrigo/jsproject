@@ -1,10 +1,9 @@
 // TIENDA PARA DIETETICA 
-//DASHBOARD ADMIN PARA INGRESAR PRODUCTOS
 //LISTA DE PRODUCTOS (CON TODAS SUS CARACTERISTICAS)
 //BUSCADOR DE PRODUCTOS
-//CARRITO DE COMPRA Y PEDIDO (SE ENVIA A WHATSAPP)
+//CARRITO DE COMPRA Y PEDIDO 
 
-// CARGA DE API
+// CARGA DE API - SE UTILIZO FAKE STORE API, LA CUAL TIENE PRODUCTOS DE MODA, PERO ES A MODO DE EJEMPLO
 function cargarProductosDeAPI() {
     const url = 'https://fakestoreapi.com/products';
 
@@ -127,7 +126,7 @@ document.addEventListener('click', event => {
         if (productoSeleccionado) {
             carritoLista.innerHTML += `<li>${productoSeleccionado.nombre} - $${productoSeleccionado.precio.toFixed(2)}</li>`;
 
-            // NOTIFICACION TOASTIFY PARA PRODUCTO AGREGADO AL CARRITO
+// NOTIFICACION TOASTIFY PARA PRODUCTO AGREGADO AL CARRITO
             Toastify({
                 text: "Producto agregado al carrito!",
                 duration: 3000,
